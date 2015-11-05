@@ -1,0 +1,28 @@
+
+form{
+    background-color:#345678;
+    margin-top:1%;
+}
+label{
+    color:#987654;
+    font-size:20px;
+
+}
+input[type='submit']{
+    font-size:20px;
+}
+textarea{
+    height:400px;
+    font-size:16px;
+}
+h1{
+    color:orange;
+    font-weight:300;
+}
+strong{
+    color:black;
+}
+hr{
+  height:10px !important;
+  background-color:rgba(50,50,50,.8);
+}
