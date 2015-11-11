@@ -28,3 +28,7 @@ hr{
 .output{
   font-size:24px;
 }
+
+.correct{
+    color:green;
+}

@@ -112,18 +112,5 @@ function do_stuff($stuff_to_work_on, $urls,$counter){
 } 
  
  
-function get_the_description($metas){
- $description_found = false;
- $description ="";
- foreach($metas as $meta){
-   if($meta->getAttribute('name') === 'description'){
-     $description = $meta->getAttribute('content');
-     $description_found = true;
-   }
-   if(!$description_found){
-     $description = "No Description Found";
-   }
- }
- return $description;
-}
+
 ?>

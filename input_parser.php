@@ -77,8 +77,14 @@ class input_parser{
     return $urls;
   }
   
+  public function get_pages(){
+    return $this->pages;
+  }
+  
   public function test(){
-    $this->parse($this->text);
+    echo "<h1>INput</h1><pre>";
+    echo $this->parse($this->text);
+    echo "</pre>";
   }
   
 }

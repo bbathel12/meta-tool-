@@ -1,7 +1,7 @@
 <?php
 
 class info_getter{
-  private $live_pages     = array();
+  private $live_pages = array();
   
   function __construct(){
     $this->urls = func_get_arg(0);
@@ -39,9 +39,13 @@ class info_getter{
     }
   }
   
+  function get_info(){
+    return $this->live_pages;
+  }
+  
   function test(){
     $this->run();
-    echo "<pre>";
+    echo "<h1>Live Data</h1><pre>";
     print_r($this->live_pages);
     echo "</pre>";
   }
