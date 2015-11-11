@@ -31,8 +31,8 @@ class input_parser{
     return preg_match($this->h1_regex, $line);
   }
 
-  private function parse(){
-    $exploded_text = explode(PHP_EOL,$this->text);
+  public function parse(){
+    $exploded_text = preg_split("/\n/",$this->text);
     $index = 0;
     foreach($exploded_text as $line){
       if(!isset($pages[$index]['url']) || !isset($pages[$index]['title']) || !isset($pages[$index]['description']) || !isset($pages[$index]['h1'])){
@@ -58,10 +58,6 @@ class input_parser{
       }
     }
     $this->pages = $pages;
-    echo "<pre>";
-    print_r($pages);
-    echo "</pre>";
-    
   }
   public function get_text(){
     echo $this->$text;
@@ -71,7 +67,7 @@ class input_parser{
     $urls = array();
     $i = 0;
     foreach($this->pages as $page){
-      $urls[$i] = $page['url'];
+      $urls[$i] = preg_replace( '/\n/','', $page['url']);
       $i++;
     }
     return $urls;

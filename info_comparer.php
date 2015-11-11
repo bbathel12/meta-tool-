@@ -9,7 +9,7 @@ class info_comparer{
   function compare(){
     $count = 0;                                                 //count to be used for scraped info index.
     $this->comparison = array();                                //array to hold the comparison data.
-    foreach($this->input_info as $input){                          //loop through input data and scraped data to compar
+    foreach($this->input_info as $input){                       //loop through input data and scraped data to compar
       foreach($input as $k => $input_piece ){
         if(strstr($input_piece,$this->scraped_info[$count][$k])){
           $this->comparison[$count][$k] = true;

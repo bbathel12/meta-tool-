@@ -5,7 +5,6 @@ class info_getter{
   
   function __construct(){
     $this->urls = func_get_arg(0);
-    print_r($this->urls);
   }
   
   public function get_the_description($metas){

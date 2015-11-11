@@ -30,14 +30,14 @@ Page Description (Meta Description): Do you want an affordable golf course and r
 
 Page Heading (H1):  Premier Golf Course on the Mississippi Gulf Coast
 
+URL: http://www.russellbarnettchevy.com/NewVehicleSearch
 
-URL: http://www.shelllandinggolf.com/-golf-overview 
+Page Title (Title Tag): New GMC & Chevy Cars - Winchester, TN - Russell Barnett Chevrolet GMC 
 
-Page Title (Title Tag): Golf Course - Gautier, MS - Shell Landing Golf Club 
+Page Description (Meta Description): Anyone in the market for a car, truck, or SUV needs to consider new GMC & Chevy cars. View our extensive inventory online or in person at our local dealership. 
 
-Page Description (Meta Description): Do you want an affordable golf course and restaurant combination? If so, you have to schedule a visit to Shell Landing Golf Club. Learn more about it here. 
+Page Heading (H1): New GMC & Chevy Cars In Winchester 
 
-Page Heading (H1):  Premier Golf Course on the Mississippi Gulf Coast
 
 END;
 
@@ -59,5 +59,7 @@ $comparison = $test_info_comparer->get_comparison();
 
 $test_outputer = new output_info($input_info,$live_info,$comparison);
 $test_outputer->output();
+
+
 
 ?>
