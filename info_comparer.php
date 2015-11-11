@@ -11,7 +11,9 @@ class info_comparer{
     $this->comparison = array();                                //array to hold the comparison data.
     foreach($this->input_info as $input){                       //loop through input data and scraped data to compar
       foreach($input as $k => $input_piece ){
-        if(strstr($input_piece,$this->scraped_info[$count][$k])){
+        $input_piece_no_spaces  = preg_replace('/\s/','',$input_piece);
+        $scraped_info_no_spaces = preg_replace('/\s/','',$this->scraped_info[$count][$k]);
+        if($input_piece_no_spaces === $scraped_info_no_spaces){
           $this->comparison[$count][$k] = true;
         }
         else{
