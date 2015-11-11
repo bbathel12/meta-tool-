@@ -2,16 +2,22 @@
 
 class output_info {
   
-  
+  /* Creates an output object takes three arrays
+   *  input_data is an array of parsed input seperated in to url, title, description, and h1
+   *  live_data is data scraped for the pages seperated in to url, title, description, and h1
+   *  comparison is the output of the info_comparer, it's an array of booleans that tell you if the url, title, description, and h1 of the input and scraped data match
+   */
   function __construct($input_data,$live_data,$comparison){
     $this->input_data = $input_data;
     $this->live_data  = $live_data;
     $this->comparison = $comparison;
   }
+  
+  /* Outputs formatted data collected */  
   function output(){
     $count = 0;
     foreach($this->input_data as $input){                          //loop through input data and scraped data to compare
-      echo "<h2>Page ".($count+1)."</h2>";
+      echo "<h2>Page ".($count+1)."</h2>";                          
       echo "<h2><a href='".$input['url']."' target='_blank'>".$input['url']."</a></h2>";
       foreach($input as $k => $input_piece ){
         if(!strstr($k,'url')){

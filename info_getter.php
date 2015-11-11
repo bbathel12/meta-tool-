@@ -2,22 +2,22 @@
 
 class info_getter{
   private $live_pages = array();
-  
+  /* creates new info getter needs a list of urls to curl */
   function __construct(){
     $this->urls = func_get_arg(0);
   }
-  
+  /* this goes through an array of meta tags to see if one of them is the description and then returns its' content */
   public function get_the_description($metas){
     $description_found = false;
     $description ="";
     
     foreach($metas as $meta){
-      if(strstr($meta->getAttribute('name'),'escription') ){
+      if(strstr($meta->getAttribute('name'),'escription') ){                              // checks for a name with escription beause this is an easy way to avoid case sensitivity
         $description = $meta->getAttribute('content');
         $description_found = true;
       }
       if(!$description_found){
-        $description = "No Description Found";
+        $description = "No Description Found";                                            // if no description meta tag is found it sets description to "No Description Found"
       }
     }
     return $description;
@@ -37,11 +37,11 @@ class info_getter{
       $i += 1;
     }
   }
-  
+  /* this returns all the scraped info used by info_comparer */
   function get_info(){
     return $this->live_pages;
   }
-  
+  /* runs info_getter and outputs the scraped data for testing */
   function test(){
     $this->run();
     echo "<h1>Live Data</h1><pre>";

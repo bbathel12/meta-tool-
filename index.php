@@ -16,7 +16,7 @@
   </head>
 <body class="container-fluid">
 <?php
-ini_set('display_errors',1);
+//ini_set('display_errors',1);
 include_once('functions.php');
 ?>
 
