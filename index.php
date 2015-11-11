@@ -40,11 +40,10 @@ include_once('functions.php');
 <?php
 
 }
-
 else{
-
+  echo '<div class="col-xs-12 col-md-10 col-md-offset-1 col-xs-offset-0">';
   $input_parser = new input_parser($_POST['input']);              // instantiates input_parser
-  $input_parser->parse();
+  $input_parser->parse();                                         // parses all the lines of text and saves usefull info in a multidimensional array
   $urls = $input_parser->get_urls();                              // input parser returnse the urls for info_getter
   $info_getter = new info_getter($urls);                          // creates a new info_getter with the urls from input. Then, gets all the info from the urls.
   $info_getter->run();                                            // runs info getter
@@ -55,10 +54,11 @@ else{
   $comparison = $info_comparer->get_comparison();                 // returns an array with all the comparisons
   $outputer = new output_info($input_info,$live_info,$comparison);// instantiates output_info with all info gathered this far.
   $outputer->output();                                            // outputs all the information that was gathered from input, live pages, and comparison.
-
+  echo '</div>';
     
 }
 ?>
+</div>
 </body>
 </html>
 

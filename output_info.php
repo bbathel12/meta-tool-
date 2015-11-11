@@ -14,10 +14,15 @@ class output_info {
       echo "<h2><a href='".$input['url']."' target='_blank'>".$input['url']."</a></h2>";
       foreach($input as $k => $input_piece ){
         if(!strstr($k,'url')){
+          echo "<div class='row'>";
           $message = ( $this->comparison[$count][$k] ? "text-success" :  "text-danger" );
+          echo "</div>";
           ?>
-          <h3 class="<?php echo "$k"."_ ";  ?> input"><?php echo ucfirst ( $k ).": "; echo "<span class='$message' > $input_piece"; ?></h3>
-          <h3 class="<?php echo "$k"."_ ";  ?> output"><?php echo "Live ".ucfirst ( $k ).": "; echo "<span class='$message' > ". $this->live_data[$count][$k]; ?></h3>
+          <div class='row'>
+          <h3 class="col-md-2 col-xs-offset-0 col-xs-12 <?php echo "$k"."_ ";  ?> input"><?php echo ucfirst ( $k ).":</h3> "; echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'><span class='$message' > $input_piece</h3>"; ?></h3>
+          </div><div class='row'>
+          <h3 class="col-md-2 col-xs-offset-0 col-xs-12 <?php echo "$k"."_ ";  ?> output"><?php echo "Live ".ucfirst ( $k ).":</h3> "; echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'><span class='$message' > ". $this->live_data[$count][$k]; ?></h3>
+          </div>
         <?php
         }
         
