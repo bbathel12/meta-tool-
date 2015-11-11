@@ -1,7 +1,6 @@
 
-form{
-    background-color:#345678;
-    margin-top:1%;
+body{
+    background-color:#dddddd;
 }
 label{
     color:#987654;
@@ -25,4 +24,7 @@ strong{
 hr{
   height:10px !important;
   background-color:rgba(50,50,50,.8);
+}
+.output{
+  font-size:24px;
 }

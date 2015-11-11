@@ -70,7 +70,7 @@ function get_the_first($domNodeList){
 
 
 function output_meta($url, $title, $metas, $h1){
-    echo "<div class='row'>";
+    echo "<div class='row output'>";
     echo "<div class='col-xs-10 col-xs-offset-1'>";
     echo "<div class='row'><a href='//$url'><h3>$url</h3></a></div>";
     echo "<div class='row'><strong>Title:</strong> ".$title."</div>";
@@ -105,4 +105,9 @@ function do_stuff($stuff_to_work_on, $urls,$counter){
     output_meta($urls[$counter],$title, $metas, $h1);
 } 
  
+ 
+ 
+function parse_input($input){
+  
+}
 ?>
