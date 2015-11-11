@@ -11,6 +11,7 @@ class output_info {
   function output(){
     $count = 0;
     foreach($this->input_data as $input){                          //loop through input data and scraped data to compare
+      echo "<h2>Page ".($count+1)."</h2>";
       echo "<h2><a href='".$input['url']."' target='_blank'>".$input['url']."</a></h2>";
       foreach($input as $k => $input_piece ){
         if(!strstr($k,'url')){
