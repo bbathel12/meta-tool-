@@ -31,7 +31,6 @@ class input_parser{
     return preg_match($this->h1_regex, $line);
   }
 
-  
   private function parse(){
     $exploded_text = explode(PHP_EOL,$this->text);
     $index = 0;
@@ -39,7 +38,7 @@ class input_parser{
       if(!isset($pages[$index]['url']) || !isset($pages[$index]['title']) || !isset($pages[$index]['description']) || !isset($pages[$index]['h1'])){
         if($this->is_url($line)){
           $url = preg_split('/http\:/', $line);
-          $pages[$index]['url'] = $url[1];
+          $pages[$index]['url'] = 'http:'.$url[1];
         }
         elseif($this->is_title($line)){
           $title = preg_split('/\:/', $line);
@@ -58,6 +57,7 @@ class input_parser{
         $index += 1;
       }
     }
+    $this->pages = $pages;
     echo "<pre>";
     print_r($pages);
     echo "</pre>";
@@ -67,14 +67,19 @@ class input_parser{
     echo $this->$text;
   }
   
+  public function get_urls(){
+    $urls = array();
+    $i = 0;
+    foreach($this->pages as $page){
+      $urls[$i] = $page['url'];
+      $i++;
+    }
+    return $urls;
+  }
+  
   public function test(){
     $this->parse($this->text);
   }
   
 }
-
-
-
-
-
 ?>

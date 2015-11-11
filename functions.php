@@ -1,4 +1,10 @@
 <?php
+
+ /* autoloads all classes that you use */
+ function __autoload($class_name) {
+    include $class_name . '.php';
+ }
+ 
  function multiRequest($data, $options = array()) {
  
   // array of curl handles
@@ -97,7 +103,7 @@ function output_meta($url, $title, $metas, $h1){
 
 
 function do_stuff($stuff_to_work_on, $urls,$counter){
-    @$dom = new DOMDocument();                                   // creates new DOMdocument object
+    $dom = new DOMDocument();                                    // creates new DOMdocument object
     @$dom->loadHTML($stuff_to_work_on);                          // parses html and loads it into the DOMdocument
     $title = get_the_first($dom->getElementsByTagName('title')); // gets the title
     $metas = $dom->getElementsByTagName('meta');                 // gets all meta tags
@@ -106,8 +112,18 @@ function do_stuff($stuff_to_work_on, $urls,$counter){
 } 
  
  
- 
-function parse_input($input){
-  
+function get_the_description($metas){
+ $description_found = false;
+ $description ="";
+ foreach($metas as $meta){
+   if($meta->getAttribute('name') === 'description'){
+     $description = $meta->getAttribute('content');
+     $description_found = true;
+   }
+   if(!$description_found){
+     $description = "No Description Found";
+   }
+ }
+ return $description;
 }
 ?>
