@@ -16,7 +16,7 @@
   </head>
 <body class="container-fluid"></body>
 <?php
-//ini_set('display_errors',1);
+ini_set('display_errors',1);
 include_once('functions.php');
 ?>
 
@@ -62,12 +62,11 @@ else{ ?>
   // instantiates input_parser or img_input_parser depending on the radio button
   $input_parser = ($_POST['choice'] == 'meta' ) ? new input_parser($_POST['input']) : new img_input_parser($_POST['input']);              
   $input_parser->parse();                                         // parses all the lines of text and saves usefull info in a multidimensional array
-  //$input_parser->test();
+
   
   // creates a new info_getter or img_info_getter depending on the radio button with the urls from input. Then, gets all the info from the urls.
   $info_getter = ($_POST['choice'] == 'meta' ) ? new info_getter($input_parser->get_urls()) : new img_info_getter($input_parser->get_urls(),$input_parser->get_pages());                 
   $info_getter->run();                                            // runs info getter
-  //$info_getter->test(); 
   $input_info = $input_parser->get_pages();                       // gets all the info including urls from the input_parser for the info_comparer
   $live_info = $info_getter->get_info();                          // returns all live info for the comparer to use
   
@@ -75,7 +74,6 @@ else{ ?>
   // creates a new comparer with all the info depending on radio buttons
   $info_comparer = ($_POST['choice'] == 'meta' ) ? new info_comparer($input_info, $live_info) : new img_info_comparer($input_info, $live_info);    
   $info_comparer->compare();                                      // compares all the things
-  //$info_comparer->test();
   $comparison = $info_comparer->get_comparison();                 // returns an array with all the comparisons
   
   
