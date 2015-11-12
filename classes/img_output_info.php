@@ -57,8 +57,12 @@ class img_output_info {
         <?php
 
         }
-        else{
-          echo "<h1>Image Not Found On Page</h1>";
+        else{ ?>
+          <div class="row">
+            <img class='img-responsive col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-0' src='<?php echo $src; ?>'>
+            <h1 class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-0">Image Not Found On Page</h1>
+          </div>
+        <?php
         }
       }// end of inner foreach
       echo "<hr>";
