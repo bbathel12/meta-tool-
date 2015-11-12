@@ -10,7 +10,28 @@ class img_info_comparer{
   }
   /* this compares input_info and scraped_info and creates an array of the results of comparisons. */
   function compare(){
-    $count = 0;                                                                           //count to be used for scraped info index.
+    $count = 0;
+    $input = $this->input_info ;
+    $live  = $this->scraped_info ;
+    foreach($input as $url => $img){
+      foreach($img as $src => $meta){
+        if(isset($live[$url][$src]))
+        {
+          $in_alt_no_spaces      = preg_replace('/\s/','',$meta['alt']);           // these are the live and input alt and title text with all spaces removed for easy comparison;
+          $in_title_no_spaces    = preg_replace('/\s/','',$meta['title']);;
+          $live_alt_no_spaces    = preg_replace('/\s/','',$live[$url][$src]['alt']);
+          $live_title_no_spaces  = preg_replace('/\s/','',$live[$url][$src]['alt']);; 
+          $comparison[$url][$src]['alt']   = ($in_alt_no_spaces === $live_alt_no_spaces) ;
+          $comparison[$url][$src]['title'] = ($in_title_no_spaces === $live_title_no_spaces) ;
+        }
+        else
+        {
+          $comparison[$url][$src]['alt']   = "Image Not On Page" ;
+          $comparison[$url][$src]['title'] = "Image Not On Page" ;
+        }
+      }
+    }
+    $this->comparison = $comparison;
   }
   /* returns the comparison array so that output_info can use it later. */
   function get_comparison(){

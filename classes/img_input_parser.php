@@ -19,16 +19,16 @@ class img_input_parser{
       if(!empty($cells[0])){
         $url =  $cells[0];
         $row =  0;
-        $pages[$url][$row]['src']   = $cells[1];
-        $pages[$url][$row]['title'] = $cells[2];
-        $pages[$url][$row]['alt']   = $cells[3];
+        $pages[$url][$cells[1]]['src']   = $cells[1];
+        $pages[$url][$cells[1]]['title'] = $cells[2];
+        $pages[$url][$cells[1]]['alt']   = $cells[3];
       }
       //if first cell is blank then increase row and add the stuff
       elseif(!empty($cells[1])){
         $row += 1;
-        $pages[$url][$row]['src']   = $cells[1];
-        $pages[$url][$row]['title'] = $cells[2];
-        $pages[$url][$row]['alt']   = $cells[3];
+        $pages[$url][$cells[1]]['src']   = $cells[1];
+        $pages[$url][$cells[1]]['title'] = $cells[2];
+        $pages[$url][$cells[1]]['alt']   = $cells[3];
       }
     }
     $this->pages = $pages;

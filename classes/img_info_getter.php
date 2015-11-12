@@ -22,9 +22,11 @@ class img_info_getter{
         $img = $imgs->item($i);
         foreach($this->imgs[$current_url] as $input){
           if(strstr($input['src'],$img->getAttribute('src'))){
-            $temp_pages[$current_url][$i]['src']   = ($img->getAttribute('src')) ? $img->getAttribute('src') : "none";
-            $temp_pages[$current_url][$i]['alt']   = ($img->getAttribute('alt')) ? $img->getAttribute('alt') : "none";
-            $temp_pages[$current_url][$i]['title'] = ($img->getAttribute('title')) ? $img->getAttribute('title') : "none";
+            $src = $img->getAttribute('src');
+            if(!strstr($src,'//')){$src = $current_url."".$src;}
+            $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $dom->documentURI."".$img->getAttribute('src') : "none";
+            $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt')) ?   $img->getAttribute('alt') : "none";
+            $temp_pages[$current_url][$src]['title'] = ($img->getAttribute('title')) ? $img->getAttribute('title') : "none";
           }
         }
       }
