@@ -2,7 +2,7 @@
 
  /* autoloads all classes that you use */
  function __autoload($class_name) {
-    include $class_name . '.php';
+    include 'classes/' . $class_name . '.php';
  }
  
  function multiRequest($data, $options = array()) {
