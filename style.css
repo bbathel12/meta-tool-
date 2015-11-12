@@ -32,3 +32,6 @@ hr{
 .correct{
     color:green;
 }
+textarea{
+    resize:none;
+}

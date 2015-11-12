@@ -62,10 +62,12 @@ class input_parser{
     }
     $this->pages = $pages;                                   // set pages property equal to the $pages array 
   }
+  
   /* this will return the pre parsed text if you want it for some reason. */
   public function get_text(){
     echo $this->$text;
   }
+  
   /* this will return all urls from the pages array this is used by the info getter to curl all the pages */
   public function get_urls(){
     $urls = array();
@@ -76,16 +78,18 @@ class input_parser{
     }
     return $urls;
   }
+  
   /* returns pages property this is used for info_comparer later */
   public function get_pages(){
     return $this->pages;
   }
+  
   /* parses and outputs preformatted text to see if everything is working ok */
   public function test(){
     echo "<h1>INput</h1><pre>";
     echo $this->parse($this->text);
     echo "</pre>";
   }
-  
+
 }
 ?>
