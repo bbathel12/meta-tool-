@@ -26,12 +26,14 @@ class img_info_getter{
             if(!strstr($src,'//')){
               if(preg_match('/\/$/',$current_url) && preg_match('/^\//',$src)){
                 $matches = preg_split('/\//',$current_url);
-                echo "<H1>Matches ".$number_of_matches."</h1>";
                 $src = $matches[0]."//".$matches[2].$src;
               }
+              
               else{
                 $src = $current_url."".$src;
               }
+            }elseif(preg_match('/^\/+/',$src)){
+                $src = "http:".$src;
             }
             $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $dom->documentURI."".$img->getAttribute('src') : "none";
             $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt')) ?   $img->getAttribute('alt') : "none";
