@@ -26,6 +26,7 @@ class img_output_info {
         $url_ = preg_replace('/\s/','',$url);
         $src_ = preg_replace('/\s/','',$src);
         echo "<h2><a href='".$meta['src']."' target='_blank'>".$meta['src']."</a></h2>";
+        if(!strstr($comp[$url_][$src_]['alt'], "Image Not On Page") ){
           echo "<div class='row'>";
           echo "<img class='img-responsive col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-0' src='$src'>";
           $message_alt   = ( $comp[$url_][$src_]['alt'] ? "text-success" :  "text-danger" );
@@ -55,7 +56,14 @@ class img_output_info {
           </div>
         <?php
 
-        
+        }
+        else{ ?>
+          <div class="row">
+            <img class='img-responsive col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-0' src='<?php echo $src; ?>'>
+            <h1 class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-0">Image Not Found On Page</h1>
+          </div>
+        <?php
+        }
       }// end of inner foreach
       echo "<hr>";
       $count += 1;
