@@ -22,8 +22,17 @@ class img_info_getter{
         $img = $imgs->item($i);
         foreach($this->imgs[$current_url] as $input){
           if(strstr($input['src'],$img->getAttribute('src'))){
-            $src = $img->getAttribute('src');
-            if(!strstr($src,'//')){$src = $current_url."".$src;}
+            $src = preg_replace('/\s/','',$img->getAttribute('src'));
+            if(!strstr($src,'//')){
+              if(preg_match('/\/$/',$current_url) && preg_match('/^\//',$src)){
+                $matches = preg_split('/\//',$current_url);
+                echo "<H1>Matches ".$number_of_matches."</h1>";
+                $src = $matches[0]."//".$matches[2].$src;
+              }
+              else{
+                $src = $current_url."".$src;
+              }
+            }
             $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $dom->documentURI."".$img->getAttribute('src') : "none";
             $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt')) ?   $img->getAttribute('alt') : "none";
             $temp_pages[$current_url][$src]['title'] = ($img->getAttribute('title')) ? $img->getAttribute('title') : "none";

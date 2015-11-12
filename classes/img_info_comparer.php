@@ -15,19 +15,20 @@ class img_info_comparer{
     $live  = $this->scraped_info ;
     foreach($input as $url => $img){
       foreach($img as $src => $meta){
-        if(isset($live[$url][$src]))
+        $src_ = preg_replace('/\s/','',$src);
+        if(isset($live[$url][$src_]))
         {
           $in_alt_no_spaces      = preg_replace('/\s/','',$meta['alt']);           // these are the live and input alt and title text with all spaces removed for easy comparison;
           $in_title_no_spaces    = preg_replace('/\s/','',$meta['title']);;
           $live_alt_no_spaces    = preg_replace('/\s/','',$live[$url][$src]['alt']);
-          $live_title_no_spaces  = preg_replace('/\s/','',$live[$url][$src]['alt']);; 
-          $comparison[$url][$src]['alt']   = ($in_alt_no_spaces === $live_alt_no_spaces) ;
-          $comparison[$url][$src]['title'] = ($in_title_no_spaces === $live_title_no_spaces) ;
+          $live_title_no_spaces  = preg_replace('/\s/','',$live[$url][$src]['title']);; 
+          $comparison[$url][$src_]['alt']   = ($in_alt_no_spaces === $live_alt_no_spaces) ;
+          $comparison[$url][$src_]['title'] = ($in_title_no_spaces === $live_title_no_spaces) ;
         }
         else
         {
-          $comparison[$url][$src]['alt']   = "Image Not On Page" ;
-          $comparison[$url][$src]['title'] = "Image Not On Page" ;
+          $comparison[$url][$src_]['alt']   = "Image Not On Page" ;
+          $comparison[$url][$src_]['title'] = "Image Not On Page" ;
         }
       }
     }

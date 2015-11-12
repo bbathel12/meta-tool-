@@ -23,12 +23,14 @@ class img_output_info {
       echo "<h2>Page ".($count+1)." <a href='$url' target='_blank'>". $url ."</a></h2>";
       echo "<hr>";
       foreach($img as $src => $meta ){
+        $url_ = preg_replace('/\s/','',$url);
+        $src_ = preg_replace('/\s/','',$src);
         echo "<h2><a href='".$meta['src']."' target='_blank'>".$meta['src']."</a></h2>";
           echo "<div class='row'>";
-          echo "<img class='img-responsive col-xs-10 col-xs-offset-1 col-md-1 col-md-offset-0' src='$src'>";
-          $message_alt   = ( $comp[$url][$src]['alt'] ? "text-success" :  "text-danger" );
-          $message_title = ( $comp[$url][$src]['title'] ? "text-success" :  "text-danger" );
-          echo "<div class='col-xs-10 col-xs-offset-1 col-md-11 col-md-offset-0'>";
+          echo "<img class='img-responsive col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-0' src='$src'>";
+          $message_alt   = ( $comp[$url_][$src_]['alt'] ? "text-success" :  "text-danger" );
+          $message_title = ( $comp[$url_][$src_]['title'] ? "text-success" :  "text-danger" );
+          echo "<div class='col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-0'>";
           echo "<div class='row'>";
           
           try{
@@ -36,7 +38,7 @@ class img_output_info {
           } catch(Exception $e)
           { echo 'error';}
           try{
-            echo "<div class='row'><h3 class='col-md-2'>Live Alt: </h3><h3 class='col-md-10 $message_alt'>".$live[$url][$src]['alt']."</h3></div>";
+            echo "<div class='row'><h3 class='col-md-2'>Live Alt: </h3><h3 class='col-md-10 $message_alt'>".$live[$url_][$src_]['alt']."</h3></div>";
           } catch(Exception $e)
           { echo 'error';}
           try{
@@ -44,7 +46,7 @@ class img_output_info {
           } catch(Exception $e)
           { echo 'error';}
           try{
-            echo "<div class='row'><h3 class='col-md-2'>Live Title: </h3><h3 class='col-md-10 $message_title'>".$live[$url][$src]['title']."</h3></div>";
+            echo "<div class='row'><h3 class='col-md-2'>Live Title: </h3><h3 class='col-md-10 $message_title'>".$live[$url_][$src_]['title']."</h3></div>";
           } catch(Exception $e)
           { echo 'error';}
           echo "</div></div></div>";
@@ -61,6 +63,7 @@ class img_output_info {
   }
   
 }
+
 
 
 ?>
