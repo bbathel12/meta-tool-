@@ -35,3 +35,6 @@ hr{
 textarea{
     resize:none;
 }
+.fixed{
+    position:fixed;
+}

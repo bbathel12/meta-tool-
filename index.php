@@ -49,8 +49,8 @@ include_once('functions.php');
 } 
 
 else{ ?>
-  <div class="row text-center" style="margin-bottom:5%" >
-  <button class="btn btn-primary  btn-large" onclick="window.history.back();">Back To Form</button>
+  <div class="row text-center fixed" style="margin-bottom:5%" >
+  <button class="btn btn-primary  btn-large" onclick="window.history.back();">Back To Form</button><br>
   <button class="btn btn-primary" onclick="location.reload()">Test Again</button>
   </div>
   
