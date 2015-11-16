@@ -30,7 +30,7 @@ include_once('functions.php');
           <label class="text-center col-xs-10 col-xs-offset-1" for="input"> Input</label>
         </div>
         <div class="row ">
-          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Meta Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=meta checked=true>
+          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Meta Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=meta <?php if(!isset($_POST['input']) || isset($_POST['back_button'])) { echo "checked=true"; }?>>
         </div>
         <div class="row">
           <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Image Optimizations Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=images >
