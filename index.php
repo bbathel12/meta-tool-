@@ -19,9 +19,8 @@
 ini_set('display_errors',1);
 include_once('functions.php');
 ?>
-
-<?php if(!isset($_POST['input'])) { //if the form has been filled out?>
-<div class="row">
+<div class="<?php if(isset($_POST['input']) && !isset($_POST['back_button'])) { echo "hidden"; }//if the form has been filled out?>">
+<div class="row ">
 <h1 class="text-center text-primary col-xs-10 col-xs-offset-1">Meta Checker 2.0 (Beta)</h1>
 <h1 class="text-center text-warning col-xs-10 col-xs-offset-1" >Enter a list of urls, h1, titles, and descriptions.</h1>
 </div>
@@ -37,21 +36,19 @@ include_once('functions.php');
           <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Image Optimizations Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=images >
         </div>
         <div class="row">
-          <textarea class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" name="input"></textarea>
+          <textarea class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" name="input"><?php if(isset($_POST['input'])) { echo $_POST['input']; }?></textarea>
         </div>
         <div class="row">
           <input class="btn-primary col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-5" type="submit">
         </div>
-    </form>
+    
   </div>
-<?php
-
-} 
-
-else{ ?>
+</div>
+<?php if(isset($_POST['input']) && !isset($_POST['back_button'])){ ?>
   <div class="row text-center" style="margin-bottom:5%" >
-  <button class="btn btn-primary  btn-large" onclick="window.history.back();">Back To Form</button>
-  <button class="btn btn-primary" onclick="location.reload()">Test Again</button>
+  <input type="submit" class="btn btn-primary  btn-large resubmit" name="back_button" value="Back">
+  <!--<button class="btn btn-primary" onclick="location.reload()">Test Again</button>-->
+  <input type="submit" name="back_button" class="btn btn-primary  btn-large resubmit"  value='Test Again'>
   </div>
   
   
@@ -85,15 +82,22 @@ else{ ?>
  </div></div>
   
   <div class="row text-center" style="margin-bottom:5%" >
-  <button class="btn btn-primary  btn-large" onclick="window.history.back();">Back To Form</button>
-  <button class="btn btn-primary" onclick="location.reload()">Test Again</button>
+  <input type="submit" class="btn btn-primary  btn-large resubmit"  name="back_button" value="back">
+  
+  <!--<button class="btn btn-primary" onclick="location.reload()">Test Again</button>-->
+  <input type="submit" class="btn btn-primary  btn-large resubmit" value='Test Again'>
   </div>
   <?php
+  
 }
 ?>
-  
-  
+  </form>
+  <div class="row text-center">
+    <textarea rows="10" class="notes col-xs-8 col-xs-offset-2 hidden" id="all_notes"></textarea>
+    <button style="margin-bottom:5%" class="resubmit  btn btn-primary" id="all_notes_button">Get All the Notes!</button>
+  </div>
 </div>
+<script src="js/get_notes.js"></script>
 </body>
 </html>
 
