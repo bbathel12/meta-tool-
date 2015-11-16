@@ -87,7 +87,7 @@ include_once('functions.php');
   <!--<button class="btn btn-primary" onclick="location.reload()">Test Again</button>-->
   <input type="submit" class="btn btn-primary  btn-large resubmit" value='Test Again'>
   </div>
-  <div class="row text-center">
+  <div class="row text-center <?php if(!isset($_POST['input']) || isset($_POST['back_button'])) { echo "hidden"; }//if the form has been filled out?>">
     <textarea rows="10" class="notes col-xs-8 col-xs-offset-2 hidden" id="all_notes"></textarea>
     <button style="margin-bottom:5%" class="resubmit  btn btn-primary" id="all_notes_button">Get All the Notes!</button>
   </div>
