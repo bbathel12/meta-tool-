@@ -35,3 +35,13 @@ hr{
 textarea{
     resize:none;
 }
+.fixed{
+    position:fixed;
+}
+.top-buttons{
+    z-index:1;
+}
+.top-buttons input{
+    width:80px;
+}
+    
