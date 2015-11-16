@@ -16,7 +16,7 @@
   </head>
 <body class="container-fluid"></body>
 <?php
-//ini_set('display_errors',1);
+ini_set('display_errors',1);
 include_once('functions.php');
 ?>
 
@@ -80,7 +80,7 @@ else{ ?>
   // instantiates output_info with all info gathered this far, depending on the radio buttons
   $outputer = ($_POST['choice'] == 'meta' ) ? new output_info($input_info,$live_info,$comparison) : new img_output_info($input_info,$live_info,$comparison);
   $outputer->output();                                            // outputs all the information that was gathered from input, live pages, and comparison.*/
-
+  
   ?>
  </div></div>
   

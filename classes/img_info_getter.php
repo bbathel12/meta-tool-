@@ -17,24 +17,30 @@ class img_info_getter{
       $dom = new DOMDocument();                                                            // creates new DOMdocument object
       @$dom->loadHTML($page);                                                              // parses html and loads it into the DOMdocument
       $imgs = $dom->getElementsByTagName('img');                                           // gets all meta tags
-      $current_url =$this->urls[$k];
-      for($i = 0; $i< $imgs->length ; $i++){
-        $img = $imgs->item($i);
-        foreach($this->imgs[$current_url] as $input){
-          if(strstr($input['src'],$img->getAttribute('src'))){
-            $src = preg_replace('/\s/','',$img->getAttribute('src'));
-            if(!strstr($src,'//')){
-              if(preg_match('/\/$/',$current_url) && preg_match('/^\//',$src)){
-                $matches = preg_split('/\//',$current_url);
-                $src = $matches[0]."//".$matches[2].$src;
+      $current_url =$this->urls[$k];                                                       // get the url of the current page we're going to iterate through
+      for($i = 0; $i< $imgs->length ; $i++){                                               // iterate through every image on the current page
+        $img = $imgs->item($i);                                                            // since we're using dom node lists you have to use the item() function to get the img you want
+        foreach($this->imgs[$current_url] as $input){                                      // this gets the input imgs from the input stuff
+          if(strstr($input['src'],$img->getAttribute('src'))){                             // if the src from the page is contained within the src from the gdoc 
+            $src = preg_replace('/\s/','',$img->getAttribute('src'));                      // replace any spaces because there shouldn't be spaces in a src or url
+            if(!strstr($src,'//')){                                                        // if the string doesn't contain // then it's a relative src and stuff needs to be done.
+              if(preg_match('/\/$/',$current_url) && preg_match('/^\//',$src)){            // if the url ends in / and the src begins in /
+                $matches = preg_split('/\//',$current_url);                                // split the url on /'s and only add the protocol and domain
+                $src = $matches[0]."//".$matches[2].$src;            
               }
-              
+              elseif(preg_match('/^\//',$src)){                                            // the the src begins with a slash but the url doesn't end in one
+                $matches = preg_split('/\//',$current_url);                                // split the url on /'s and add the protocol and domain
+                $src = $matches[0]."".$matches[2].$src;
+              }
               else{
-                $src = $current_url."".$src;
-              }
-            }elseif(preg_match('/^\/+/',$src)){
-                $src = "http:".$src;
+                $src = $current_url."".$src;                                               // or if neither of url doesn't have a trailing slash and the src doesn't have a preceding slash 
+              }                                                                            // just put them together
             }
+            elseif(preg_match('/^\/+/',$src)){                                             // if the src begins with more than one / just add the protocol from the url
+                $matches = preg_split('/\//',$current_url); 
+                $src = "$matches[0]".$src;
+            }
+            // the next three lines set temp pages with a index of current_url then current_src then just the string src, alt, and title 
             $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $dom->documentURI."".$img->getAttribute('src') : "none";
             $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt')) ?   $img->getAttribute('alt') : "none";
             $temp_pages[$current_url][$src]['title'] = ($img->getAttribute('title')) ? $img->getAttribute('title') : "none";
@@ -42,7 +48,7 @@ class img_info_getter{
         }
       }
     }
-    $this->live_pages = $temp_pages;
+    $this->live_pages = $temp_pages;                                                       // after all the iterating and setting is finally done it move the temp_pages array to the live_pages array.
   }
   
   
