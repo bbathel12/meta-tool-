@@ -6,7 +6,7 @@ class input_parser{
   private $url_regex         = "/[^\:\n]*(url|URL)+[^\:]*\:([^\n]*)/";
   private $title_regex       = "/[^\:\n]*(T|title)+[^\:]*\:([^\n]*)/";
   private $description_regex = "/[^\:\n]*(Meta|meta)+[^\:]*\:([^\n]*)/";
-  private $h1_regex          = "/[^\:\n]*(h1|H1)+[^\:]\:([^\n]*)/";
+  private $h1_regex          = "/[^\:\n]*(h1|H1)+[^\:]?\:([^\n]*)/";
   private $pages             = array();
 
   
