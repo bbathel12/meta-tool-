@@ -18,6 +18,8 @@ class img_info_getter{
       @$dom->loadHTML($page);                                                              // parses html and loads it into the DOMdocument
       $imgs = $dom->getElementsByTagName('img');                                           // gets all meta tags
       $current_url =$this->urls[$k];                                                       // get the url of the current page we're going to iterate through
+      $matches = preg_split('/\//',$current_url);
+      $domain =  $matches[0]."//".$matches[2];
       for($i = 0; $i< $imgs->length ; $i++){                                               // iterate through every image on the current page
         $img = $imgs->item($i);                                                            // since we're using dom node lists you have to use the item() function to get the img you want
         foreach($this->imgs[$current_url] as $input){                                      // this gets the input imgs from the input stuff
@@ -33,7 +35,8 @@ class img_info_getter{
                 $src = $matches[0]."".$matches[2].$src;
               }
               else{
-                $src = $current_url."".$src;                                               // or if neither of url doesn't have a trailing slash and the src doesn't have a preceding slash 
+                $matches = preg_split('/\//',$current_url);
+                $src = $matches[0]."//".$matches[2]."/".$src;                              // or if neither of url doesn't have a trailing slash and the src doesn't have a preceding slash 
               }                                                                            // just put them together
             }
             elseif(preg_match('/^\/+/',$src)){                                             // if the src begins with more than one / just add the protocol from the url
@@ -41,7 +44,7 @@ class img_info_getter{
                 $src = "$matches[0]".$src;
             }
             // the next three lines set temp pages with a index of current_url then current_src then just the string src, alt, and title 
-            $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $dom->documentURI."".$img->getAttribute('src') : "none";
+            $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $src/*$dom->documentURI."".$img->getAttribute('src') */: "none";
             $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt')) ?   $img->getAttribute('alt') : "none";
             $temp_pages[$current_url][$src]['title'] = ($img->getAttribute('title')) ? $img->getAttribute('title') : "none";
           }

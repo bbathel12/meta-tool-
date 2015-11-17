@@ -47,5 +47,4 @@ class img_info_comparer{
   
 }//end class
 
-
 ?>
