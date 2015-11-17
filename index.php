@@ -99,8 +99,10 @@ include_once('functions.php');
     <button style="margin-bottom:5%" class="resubmit  btn btn-primary" id="all_notes_button">Get All the Notes!</button>
   </div>
 </div>
-<script src="js/get_notes.js"></script>
-<script src="js/open_note_field.js"></script>
+
+  <script src="js/get_notes.js"></script>
+  <script src="js/open_note_field.js"></script>
+
 </body>
 </html>
 
