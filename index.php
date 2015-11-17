@@ -33,7 +33,7 @@ include_once('functions.php');
           <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Meta Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=meta <?php if(!isset($_POST['input']) || isset($_POST['back_button'])) { echo "checked=true"; }?>>
         </div>
         <div class="row">
-          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Image Optimizations Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=images >
+          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Image Optimizations Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=images  <?php if(isset($_POST['choice']) && strstr( $_POST['choice'],'images')) { echo "checked=true"; }?>>
         </div>
         <div class="row">
           <textarea class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" name="input"><?php if(isset($_POST['input'])) { echo $_POST['input']; }?></textarea>
@@ -95,10 +95,14 @@ include_once('functions.php');
   </form>
   <div class="row text-center <?php if(!isset($_POST['input']) || isset($_POST['back_button'])) { echo "hidden"; }//if the form has been filled out?>">
     <textarea rows="10" class="notes col-xs-8 col-xs-offset-2 hidden" id="all_notes"></textarea>
+    <br>
     <button style="margin-bottom:5%" class="resubmit  btn btn-primary" id="all_notes_button">Get All the Notes!</button>
   </div>
 </div>
-<script src="js/get_notes.js"></script>
+
+  <script src="js/get_notes.js"></script>
+  <script src="js/open_note_field.js"></script>
+
 </body>
 </html>
 
