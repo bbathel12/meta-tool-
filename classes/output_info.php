@@ -35,10 +35,10 @@ class output_info {
         
       }// end of inner foreach
       ?>
-          <div class="row" style="">
-            <h3 class="col-md-2 col-xs-offset-0 col-xs-12">Notes</h3>
-            <textarea class="col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12 notes" rows=5 name="Page_<?php echo $count ; ?>_Notes" placeholder="notes" ><?php $notes = (isset ($_POST['Page_'.$count.'_Notes']))? $_POST['Page_'.$count.'_Notes'] : "" ; echo $notes; ?></textarea>
-          </div>
+         <div class="row" style="">
+          <button class="col-md-1 col-xs-offset-1 col-xs-12 btn btn-warning open_note">Notes: </button>
+          <textarea class="col-md-8 col-md-offset-0 col-xs-offset-0 col-xs-12 notes hidden" rows=5 name="Page_<?php echo $count ; ?>_Notes" placeholder="notes" ><?php $notes = (isset ($_POST['Page_'.$count.'_Notes']))? $_POST['Page_'.$count.'_Notes'] : "" ; echo $notes; ?></textarea>
+        </div>
       <?php
       echo "<hr>";
       $count += 1;

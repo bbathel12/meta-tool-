@@ -1,0 +1,9 @@
+$(document).ready(
+  function(){
+    $('.open_note').click(
+      function(e){
+        e.preventDefault();
+        $(this).next().toggleClass('hidden');
+      }
+    )
+})
