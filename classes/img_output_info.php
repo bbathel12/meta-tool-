@@ -39,7 +39,7 @@ class img_output_info {
           } catch(Exception $e)
           { echo 'error';}
           try{
-            echo "<div class='row'><h3 class='col-md-2'>Live Alt: </h3><h3 class='col-md-10 $message_alt'>".$live[$url_][$src_]['alt']."</h3></div>";
+            echo "<div class='row'><h3 class='col-md-2'>Live Alt: </h3><h3 class='col-md-10 $message_alt'>".  $live[$url_][$src_]['alt'] ."</h3></div>";
           } catch(Exception $e)
           { echo 'error';}
           try{

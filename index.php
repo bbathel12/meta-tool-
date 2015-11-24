@@ -13,6 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/meta-tool/css/style.css">
+    <meta charset="UTF-8">
   </head>
 <body class="container-fluid"></body>
 <?php
@@ -33,10 +34,12 @@ include_once('functions.php');
           <label class="text-center col-xs-10 col-xs-offset-1" for="input"> Input</label>
         </div>
         <div class="row ">
-          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Meta Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=meta <?php if(!isset($_POST['input']) || isset($_POST['back_button'])) { echo "checked=true"; }?>>
+          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Meta Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0"
+                 type=radio name=choice value=meta <?php if(strstr($_POST['choice'],'meta')) { echo "checked=true"; }?>>
         </div>
         <div class="row">
-          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Image Optimizations Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0" type=radio name=choice value=images  <?php if(isset($_POST['choice']) && strstr( $_POST['choice'],'images')) { echo "checked=true"; }?>>
+          <label class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3">Image Optimizations Checker</label><input class="col-xs-6 col-xs-offset-3 col-md-1 col-md-offset-0"
+                 type=radio name=choice value=images  <?php if(strstr($_POST['choice'], "image")) { echo "checked=true"; }?>>
         </div>
         <div class="row">
           <textarea class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" name="input"><?php if(isset($_POST['input'])) { echo $_POST['input']; }?></textarea>

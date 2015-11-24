@@ -32,7 +32,7 @@ class img_info_getter{
               }
               elseif(preg_match('/^\//',$src)){                                            // the the src begins with a slash but the url doesn't end in one
                 $matches = preg_split('/\//',$current_url);                                // split the url on /'s and add the protocol and domain
-                $src = $matches[0]."".$matches[2].$src;
+                $src = $matches[0]."//".$matches[2].$src;
               }
               else{
                 $matches = preg_split('/\//',$current_url);
@@ -44,9 +44,10 @@ class img_info_getter{
                 $src = "$matches[0]".$src;
             }
             // the next three lines set temp pages with a index of current_url then current_src then just the string src, alt, and title 
-            $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src')) ?   $src/*$dom->documentURI."".$img->getAttribute('src') */: "none";
-            $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt')) ?   $img->getAttribute('alt') : "none";
-            $temp_pages[$current_url][$src]['title'] = ($img->getAttribute('title')) ? $img->getAttribute('title') : "none";
+            $temp_pages[$current_url][$src]['src']   = ($img->getAttribute('src'))   ?   $src : "none";
+            $temp_pages[$current_url][$src]['alt']   = ($img->getAttribute('alt'))   ?   $img->getAttribute('alt')     : "none";
+            $temp_pages[$current_url][$src]['title'] = ($img->getAttribute('title')) ?   $img->getAttribute('title')   : "none";
+            
           }
         }
       }
