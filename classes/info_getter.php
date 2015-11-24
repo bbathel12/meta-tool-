@@ -13,7 +13,7 @@ class info_getter{
     
     foreach($metas as $meta){
       if(strstr($meta->getAttribute('name'),'escription') ){                              // checks for a name with escription beause this is an easy way to avoid case sensitivity
-        $description = $meta->getAttribute('content');
+        $description = $meta->getAttribute('content') ;
         $description_found = true;
       }
       if(!$description_found){
@@ -31,9 +31,14 @@ class info_getter{
       @$dom->loadHTML($page);                                                              // parses html and loads it into the DOMdocument
       $metas = $dom->getElementsByTagName('meta');                                         // gets all meta tags
       $this->live_pages[$i]['url'] = $this->urls[$i];                                      // sets url
-      $this->live_pages[$i]['title'] = get_the_first($dom->getElementsByTagName('title')); // gets the title
-      $this->live_pages[$i]['description'] = $this->get_the_description($metas);           // sets description
-      $this->live_pages[$i]['h1'] = get_the_first($dom->getElementsByTagName('h1'));       // gets h1
+      $this->live_pages[$i]['title'] =  get_the_first($dom->getElementsByTagName('title')) ; // gets the title
+      $this->live_pages[$i]['description'] =  $this->get_the_description($metas) ;           // sets description
+      $this->live_pages[$i]['h1'] =  get_the_first($dom->getElementsByTagName('h1'));       // gets h1
+      $this->live_pages[$i]['other_h1s'] = array();
+      $other_h1s = $dom->getElementsByTagName('h1');
+      for($count = 1 ; $count <  $other_h1s->length ; $count++){
+        array_push($this->live_pages[$i]['other_h1s'],htmlspecialchars( $other_h1s->item($count)->textContent));
+      }
       $i += 1;
     }
   }

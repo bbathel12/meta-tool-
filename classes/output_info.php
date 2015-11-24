@@ -26,10 +26,22 @@ class output_info {
           echo "</div>";
           ?>
           <div class='row'>
-          <h3 class="col-md-2 col-xs-offset-0 col-xs-12 <?php echo "$k"."_ ";  ?> input"><?php echo ucfirst ( $k ).":</h3> "; echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'><span class='$message' > $input_piece</h3>"; ?></h3>
+          <h3 class="col-md-2 col-xs-offset-0 col-xs-12 <?php echo "$k"."_ ";  ?> input"><?php echo  ucfirst ( $k ) .":</h3> "; echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'><span class='$message' > $input_piece</h3>"; ?></h3>
           </div><div class='row'>
-          <h3 class="col-md-2 col-xs-offset-0 col-xs-12 <?php echo "$k"."_ ";  ?> output"><?php echo "Live ".ucfirst ( $k ).":</h3> "; echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'><span class='$message' > ". $this->live_data[$count][$k]; ?></h3>
+          <h3 class="col-md-2 col-xs-offset-0 col-xs-12 <?php echo "$k"."_ ";  ?> output"><?php echo "Live ".ucfirst ( $k ) .":</h3> "; echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'><span class='$message' > ". $this->live_data[$count][$k]; ?></h3>
           </div>
+          <?php
+            if(strstr($k,'h1')){
+              if(isset($this->live_data[$count]['other_h1s'])){
+                ?>
+                <div class='row'>
+                <h3 class="col-md-2 col-xs-offset-0 col-xs-12">Other h1s</h3>
+                <?php
+                echo "<h3 class='col-md-10 col-md-offset-0 col-xs-offset-0 col-xs-12'>".implode(' &#183; ',$this->live_data[$count]['other_h1s'])."</h3></div>" ;
+              }
+            }
+          ?>
+          
         <?php
         }
         

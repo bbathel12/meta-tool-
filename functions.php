@@ -67,7 +67,7 @@
 
 function get_the_first($domNodeList){
   if($domNodeList->item(0)){
-    return $domNodeList->item(0)->textContent;
+    return htmlspecialchars( $domNodeList->item(0)->textContent );
   }else{
     return "none";
   }
@@ -83,7 +83,7 @@ function output_meta($url, $title, $metas, $h1){
     $description = '';
     foreach($metas as $meta){
       if($meta->getAttribute('name') === 'description'){
-        $description = $meta->getAttribute('content');
+        $description = htmlspecialchars( $meta->getAttribute('content') );
         $description_found = true;
       }
       if(!$description_found){
