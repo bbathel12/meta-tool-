@@ -17,7 +17,7 @@
   </head>
 <body class="container-fluid"></body>
 <?php
-$test = false;
+$test = true;
 if($test){
   ini_set('display_errors',1);
 }

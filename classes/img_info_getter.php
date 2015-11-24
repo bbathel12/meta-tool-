@@ -23,8 +23,9 @@ class img_info_getter{
       for($i = 0; $i< $imgs->length ; $i++){                                               // iterate through every image on the current page
         $img = $imgs->item($i);                                                            // since we're using dom node lists you have to use the item() function to get the img you want
         foreach($this->imgs[$current_url] as $input){                                      // this gets the input imgs from the input stuff
-          if(strstr($input['src'],$img->getAttribute('src'))){                             // if the src from the page is contained within the src from the gdoc 
-            $src = preg_replace('/\s/','',$img->getAttribute('src'));                      // replace any spaces because there shouldn't be spaces in a src or url
+          if(strstr($input['src'],$img->getAttribute('src'))){                             // if the src from the page is contained within the src from the gdoc
+            $src = trim($img->getAttribute('src'));                                        // trims the src from the image.
+            $src = preg_replace('/\s/','',$src);                                           // replace any spaces because there shouldn't be spaces in a src or url probably doesn't do anything
             if(!strstr($src,'//')){                                                        // if the string doesn't contain // then it's a relative src and stuff needs to be done.
               if(preg_match('/\/$/',$current_url) && preg_match('/^\//',$src)){            // if the url ends in / and the src begins in /
                 $matches = preg_split('/\//',$current_url);                                // split the url on /'s and only add the protocol and domain
