@@ -110,6 +110,32 @@ function do_stuff($stuff_to_work_on, $urls,$counter){
     output_meta($urls[$counter],$title, $metas, $h1);
 } 
  
+function replace_smart_quotes($text)
+{ 
+    $search = array(chr(145), 
+                    chr(146), 
+                    chr(147), 
+                    chr(148), 
+                    chr(151),
+                    'Ð',
+                    'Õ',
+                    '‰Û"',
+                    '‰Ûª');
  
+    $replace = array(htmlspecialchars("'"), 
+                     htmlspecialchars("'"), 
+                     htmlspecialchars('"'), 
+                     htmlspecialchars('"'), 
+                     htmlspecialchars('_'),
+                     htmlspecialchars('-'),
+                     htmlspecialchars('\''),
+                     htmlspecialchars('-'),
+                     htmlspecialchars("'"));
+    $text = str_replace($search, $replace, $text); 
+
+    return $text; 
+} 
+ 
+
 
 ?>
