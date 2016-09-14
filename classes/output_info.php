@@ -32,7 +32,7 @@ class output_info {
           </div>
           <?php
             if(strstr($k,'h1')){
-              if(isset($this->live_data[$count]['other_h1s'])){
+              if(isset($this->live_data[$count]['other_h1s']) && !empty($this->live_data[$count]['other_h1s'])){
                 ?>
                 <div class='row'>
                 <h3 class="col-md-2 col-xs-offset-0 col-xs-12">Other h1s</h3>
